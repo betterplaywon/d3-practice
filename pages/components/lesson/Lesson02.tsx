@@ -5,6 +5,10 @@ const Lesson02 = () => {
   useEffect(() => {
     const canvas = d3.select(".canvas");
 
+    if (canvas.select("svg")) {
+      canvas.select("svg").remove();
+    }
+
     const svg = canvas.append("svg").attr("width", 600).attr("height", 600);
     const group = svg.append("g").attr("transform", "translate(0,100)");
 
