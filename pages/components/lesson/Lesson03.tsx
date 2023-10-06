@@ -9,18 +9,39 @@ const Lesson03 = () => {
         height: 400,
         fill: "tomato",
       },
+      {
+        width: 100,
+        height: 250,
+        fill: "purple",
+      },
+      {
+        width: 50,
+        height: 100,
+        fill: "yellow",
+      },
     ];
 
-    const canvas = d3.select(".canvas");
+    // select the svg conatiner first
+    const svg = d3.select("svg");
 
-    if (canvas.select("svg")) {
-      canvas.select("svg").remove();
-    }
-
-    const svg = canvas.append("svg");
+    // join the data to rects
     const rect = svg
-      .append("rect")
+      .selectAll("rect")
       .data(mockData)
+      .attr("width", (data, i, n) => data.width)
+      .attr("height", (data) => data.height)
+      .attr("fill", (data) => data.fill);
+
+    // add attrs to rects already in the DOM
+    rect
+      .attr("width", (data, i, n) => data.width)
+      .attr("height", (data) => data.height)
+      .attr("fill", (data) => data.fill);
+
+    // append the enter selection to the DOM
+    rect
+      .enter()
+      .append("rect")
       .attr("width", (data, i, n) => data.width)
       .attr("height", (data) => data.height)
       .attr("fill", (data) => data.fill);
@@ -28,7 +49,9 @@ const Lesson03 = () => {
 
   return (
     <div className="canvas">
-      <rect></rect>
+      <svg width="600" height="600">
+        <rect></rect>
+      </svg>
     </div>
   );
 };
