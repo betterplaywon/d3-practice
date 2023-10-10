@@ -3,54 +3,36 @@ import * as d3 from "d3";
 
 const Lesson03 = () => {
   useEffect(() => {
-    const mockData = [
-      {
-        width: 200,
-        height: 400,
-        fill: "tomato",
-      },
-      {
-        width: 100,
-        height: 250,
-        fill: "purple",
-      },
-      {
-        width: 50,
-        height: 100,
-        fill: "yellow",
-      },
-    ];
-
-    // select the svg conatiner first
     const svg = d3.select("svg");
 
-    // join the data to rects
-    const rect = svg
-      .selectAll("rect")
-      .data(mockData)
-      .attr("width", (data, i, n) => data.width)
-      .attr("height", (data) => data.height)
-      .attr("fill", (data) => data.fill);
+    fetch("/planets.json") // Fetch data from public folder
+      .then((response) => response.json()) // Parse it as JSON
+      .then((data) => {
+        // Now you can use D3 with the data:
+        const circles = svg.selectAll("circle").data(data);
 
-    // add attrs to rects already in the DOM
-    rect
-      .attr("width", (data, i, n) => data.width)
-      .attr("height", (data) => data.height)
-      .attr("fill", (data) => data.fill);
+        // add attrs to rects already in the DOM
+        circles
+          .attr("cy", 200)
+          .attr("cx", (d) => d.distance)
+          .attr("r", (d) => d.radius)
+          .attr("fill", (d) => d.fill);
 
-    // append the enter selection to the DOM
-    rect
-      .enter()
-      .append("rect")
-      .attr("width", (data, i, n) => data.width)
-      .attr("height", (data) => data.height)
-      .attr("fill", (data) => data.fill);
+        // append the enter selection to the DOM
+        circles
+          .enter()
+          .append("circle")
+          .attr("cy", 200)
+          .attr("cx", (d) => d.distance)
+          .attr("r", (d) => d.radius)
+          .attr("fill", (d) => d.fill);
+      });
   }, []);
 
   return (
     <div className="canvas">
       <svg width="600" height="600">
-        <rect></rect>
+        <circle></circle>
       </svg>
     </div>
   );
