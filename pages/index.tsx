@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
-import Lesson03 from "./components/lesson/Lesson03";
+import Lesson04 from "./components/lesson/Lesson04";
 
 export default function Home() {
   return (
     <div>
-      <Lesson03 />
+      <Lesson04 />
     </div>
   );
 }
