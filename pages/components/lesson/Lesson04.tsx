@@ -10,20 +10,28 @@ const Lesson04 = () => {
 
     d3.json("./food.json").then((data) => {
       const rect = svg.selectAll("rect").data(data);
+      const foods = data.map((food: { name: string }) => food.name);
+      // 그래프의 너비를 나타내는 이름 배열과 범위 전달
+      const x = d3
+        .scaleBand()
+        .domain(foods)
+        .range([0, 500])
+        .paddingInner(0.2)
+        .paddingOuter(0.2);
 
       rect
-        .attr("width", 50)
+        .attr("width", x.bandwidth)
         .attr("height", (d) => y(d.orders))
         .attr("fill", "orange")
-        .attr("x", (d, i) => i * 70);
+        .attr("x", (d) => x(d.name));
 
       rect
         .enter()
         .append("rect")
-        .attr("width", 50)
+        .attr("width", x.bandwidth)
         .attr("height", (d) => y(d.orders))
         .attr("fill", "orange")
-        .attr("x", (d, i) => i * 70);
+        .attr("x", (d) => x(d.name));
     });
   }, []);
 
