@@ -3,11 +3,13 @@ import * as d3 from "d3";
 
 const Lesson04 = () => {
   useEffect(() => {
-    const svg = d3
-      .select(".canvas")
-      .append("svg")
-      .attr("width", 600)
-      .attr("height", 600);
+    const canvas = d3.select(".canvas");
+
+    if (canvas.select("svg")) {
+      canvas.select("svg").remove();
+    }
+
+    const svg = canvas.append("svg").attr("width", 600).attr("height", 600);
 
     // 너비 높이 설정
     const margin = { top: 20, bottom: 100, left: 100, right: 20 };
