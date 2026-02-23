@@ -23,7 +23,7 @@ const Lesson04 = () => {
       .attr("height", graphHeight)
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    d3.json("./food.json").then((data) => {
+    d3.json("/food.json").then((data) => {
       // scale 생성 => 높은 값을 상대적으로 처리
       const y = d3
         .scaleLinear()
