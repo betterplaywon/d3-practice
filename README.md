@@ -1,1 +1,1 @@
-D3 practice Let's go
+D3 practice
