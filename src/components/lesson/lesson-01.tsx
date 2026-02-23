@@ -1,5 +1,3 @@
-import React from "react";
-
 const Lesson01 = () => {
   return (
     <div>

@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
 const Lesson02 = () => {
-  useEffect(() => {
-    const canvas = d3.select(".canvas");
+  const canvasRef = useRef<HTMLDivElement>(null);
 
-    if (canvas.select("svg")) {
-      canvas.select("svg").remove();
-    }
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = d3.select(canvasRef.current);
+
+    canvas.select("svg").remove();
 
     const svg = canvas.append("svg").attr("width", 600).attr("height", 600);
     const group = svg.append("g").attr("transform", "translate(0,100)");
@@ -41,9 +42,13 @@ const Lesson02 = () => {
       .attr("y", 200)
       .attr("fill", "grey")
       .text("D3 practice");
+
+    return () => {
+      canvas.select("svg").remove();
+    };
   }, []);
 
-  return <div className="canvas"></div>;
+  return <div ref={canvasRef}></div>;
 };
 
 export default Lesson02;
