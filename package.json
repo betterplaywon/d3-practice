@@ -9,17 +9,21 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.21",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "d3": "^7.8.5",
     "eslint": "8.49.0",
+    "ky": "^1.14.3",
+    "msw": "^2.12.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^7.13.0",
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.91.3",
     "@types/d3": "^7.4.1",
     "@typescript-eslint/eslint-plugin": "^8.56.0",
     "@typescript-eslint/parser": "^8.56.0",
@@ -30,6 +34,14 @@
     "vite-tsconfig-paths": "^6.1.1"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "msw"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
