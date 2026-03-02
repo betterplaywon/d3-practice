@@ -3,6 +3,9 @@ import Lesson01 from "./components/lesson/lesson-01";
 import Lesson02 from "./components/lesson/lesson-02";
 import Lesson03 from "./components/lesson/lesson-03";
 import Lesson04 from "./components/lesson/lesson-04";
+import Lesson05 from "./components/lesson/lesson-05";
+import Lesson06 from "./components/lesson/lesson-06";
+import Lesson07 from "./components/lesson/lesson-07";
 
 export default function App() {
   return (
@@ -12,6 +15,9 @@ export default function App() {
         <Link to="/lesson-02">Lesson 02</Link>
         <Link to="/lesson-03">Lesson 03</Link>
         <Link to="/lesson-04">Lesson 04</Link>
+        <Link to="/lesson-05">Lesson 05</Link>
+        <Link to="/lesson-06">Lesson 06</Link>
+        <Link to="/lesson-07">Lesson 07</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Lesson04 />} />
@@ -19,6 +25,9 @@ export default function App() {
         <Route path="/lesson-02" element={<Lesson02 />} />
         <Route path="/lesson-03" element={<Lesson03 />} />
         <Route path="/lesson-04" element={<Lesson04 />} />
+        <Route path="/lesson-05" element={<Lesson05 />} />
+        <Route path="/lesson-06" element={<Lesson06 />} />
+        <Route path="/lesson-07" element={<Lesson07 />} />
       </Routes>
     </div>
   );
