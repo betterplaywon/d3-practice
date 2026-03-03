@@ -68,16 +68,30 @@ d3-practice/
 │   ├── hooks/
 │   │   ├── use-donut-chart.ts
 │   │   ├── use-pie-chart.ts
-│   │   └── use-line-chart.ts
+│   │   ├── use-line-chart.ts
+│   │   ├── use-radar-chart.ts
+│   │   ├── use-box-plot.ts
+│   │   ├── use-stacked-bar-chart.ts
+│   │   ├── use-treemap.ts
+│   │   ├── use-heatmap.ts
+│   │   ├── use-network-graph.ts
+│   │   └── use-stream-graph.ts
 │   └── components/
 │       └── lesson/
-│           ├── lesson-01.tsx     # SVG 기본 도형
-│           ├── lesson-02.tsx     # D3 기본 DOM 조작
-│           ├── lesson-03.tsx     # Scatter plot (행성)
-│           ├── lesson-04.tsx     # Bar chart (막대)
-│           ├── lesson-05.tsx     # Donut chart
-│           ├── lesson-06.tsx     # Pie chart
-│           └── lesson-07.tsx     # Line chart
+│           ├── svg-basics.tsx          # SVG 기본 도형
+│           ├── d3-dom-manipulation.tsx # D3 기본 DOM 조작
+│           ├── scatter-plot.tsx        # Scatter plot (행성)
+│           ├── bar-chart.tsx           # Bar chart (막대)
+│           ├── donut-chart.tsx         # Donut chart
+│           ├── pie-chart.tsx           # Pie chart
+│           ├── line-chart.tsx          # Line chart
+│           ├── radar-chart.tsx         # Radar chart
+│           ├── box-plot.tsx            # Box plot
+│           ├── stacked-bar-chart.tsx   # Stacked bar chart
+│           ├── treemap.tsx             # Treemap
+│           ├── heatmap.tsx             # Heatmap
+│           ├── network-graph.tsx       # Network graph
+│           └── stream-graph.tsx        # Stream graph
 ├── vite.config.ts
 ├── tsconfig.json
 └── package.json
@@ -85,8 +99,8 @@ d3-practice/
 
 ### 명명 규칙
 
-- Lesson 컴포넌트 파일명: `LessonXX.tsx` (두 자리 숫자, 예: `Lesson05.tsx`)
-- 컴포넌트 함수명: 파일명과 동일 (예: `const Lesson05 = () => { ... }`)
+- 차트 컴포넌트 파일명: 차트 유형을 케밥 케이스로 표기 (예: `radar-chart.tsx`, `box-plot.tsx`, `stacked-bar-chart.tsx`)
+- 컴포넌트 함수명: 파일명을 파스칼 케이스로 변환 (예: `const RadarChart = () => { ... }`, `const BoxPlot = () => { ... }`)
 - JSON 데이터 파일명: 소문자 + 케밥 케이스 (예: `heatmap.json`)
 
 ---
@@ -109,7 +123,7 @@ interface DataItem {
   value: number;
 }
 
-const LessonXX = () => {
+const ChartName = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -153,7 +167,7 @@ const LessonXX = () => {
   return <div ref={canvasRef}></div>;
 };
 
-export default LessonXX;
+export default ChartName;
 ```
 
 ### SVG 중복 방지 규칙
@@ -259,30 +273,30 @@ export const chartKeys = {
 1. `src/mocks/handlers.ts`에 mock 데이터 + handler 추가
 2. `src/api/charts.ts`에 타입 + fetcher 함수 추가
 3. `src/api/query-keys.ts`에 key 추가
-4. `src/hooks/use-XXX-chart.ts` 생성
-5. `src/components/lesson/lesson-XX.tsx` 생성
+4. `src/hooks/use-chart-name.ts` 생성
+5. `src/components/lesson/chart-name.tsx` 생성
 6. `src/App.tsx`에 import + Link + Route 추가
 
 ---
 
 ## 6. 라우팅 추가 체크리스트
 
-새 Lesson을 추가할 때 `src/App.tsx`를 수정한다.
+새 차트를 추가할 때 `src/App.tsx`를 수정한다.
 
-1. `src/components/lesson/lesson-XX.tsx` 파일 생성
+1. `src/components/lesson/chart-name.tsx` 파일 생성
 2. `src/App.tsx`에 import 추가
 3. `<Link>` 추가 (네비게이션)
 4. `<Route>` 추가 (라우팅)
 
 ```tsx
-// src/App.tsx 수정 예시 (Lesson05 추가)
-import Lesson05 from "./components/lesson/Lesson05";
+// src/App.tsx 수정 예시 (RadarChart 추가)
+import RadarChart from "./components/lesson/radar-chart";
 
 // <nav> 안에 Link 추가
-<Link to="/lesson05">Lesson 05</Link>
+<Link to="/radar-chart">Radar Chart</Link>
 
 // <Routes> 안에 Route 추가
-<Route path="/lesson05" element={<Lesson05 />} />
+<Route path="/radar-chart" element={<RadarChart />} />
 ```
 
 ---
@@ -348,19 +362,19 @@ const color = d3.scaleOrdinal(d3.schemeTableau10);
 
 ## 9. 목표 차트 목록 및 진행 현황
 
-| Lesson | 차트 유형 | 주요 D3 API | 상태 |
-|--------|-----------|-------------|------|
-| Lesson01 | SVG 기본 도형 (rect, circle, line) | - | 완료 |
-| Lesson02 | D3 기본 DOM 조작 | `d3.select`, `append` | 완료 |
-| Lesson03 | Scatter plot (행성 데이터) | `data()`, `enter()` | 완료 |
-| Lesson04 | Bar chart (막대) | `scaleBand`, `scaleLinear` | 완료 |
-| Lesson05 | Donut chart (도넛) | `d3.pie()`, `d3.arc()` | 완료 |
-| Lesson06 | Pie chart (파이) | `d3.pie()`, `d3.arc()` | 완료 |
-| Lesson07 | Line chart (선) | `d3.line()`, `scaleTime()` | 완료 |
-| Lesson08 | Radar chart (레이더) | `d3.lineRadial()` | 미완료 |
-| Lesson09 | Box plot (박스) | `d3.quantile()`, `d3.extent()` | 미완료 |
-| Lesson10 | Stacked bar chart | `d3.stack()` | 미완료 |
-| Lesson11 | Treemap | `d3.treemap()`, `d3.hierarchy()` | 미완료 |
-| Lesson12 | Heatmap | `scaleSequential`, `interpolateInferno` | 미완료 |
-| Lesson13 | Network graph | `forceSimulation()`, `forceLink()` | 미완료 |
-| Lesson14 | Stream graph | `d3.stack()`, `stackOffsetWiggle` | 미완료 |
+| 파일 | 차트 유형 | 주요 D3 API | 상태 |
+|------|-----------|-------------|------|
+| `svg-basics.tsx` | SVG 기본 도형 (rect, circle, line) | - | 완료 |
+| `d3-dom-manipulation.tsx` | D3 기본 DOM 조작 | `d3.select`, `append` | 완료 |
+| `scatter-plot.tsx` | Scatter plot (행성 데이터) | `data()`, `enter()` | 완료 |
+| `bar-chart.tsx` | Bar chart (막대) | `scaleBand`, `scaleLinear` | 완료 |
+| `donut-chart.tsx` | Donut chart (도넛) | `d3.pie()`, `d3.arc()` | 완료 |
+| `pie-chart.tsx` | Pie chart (파이) | `d3.pie()`, `d3.arc()` | 완료 |
+| `line-chart.tsx` | Line chart (선) | `d3.line()`, `scaleTime()` | 완료 |
+| `radar-chart.tsx` | Radar chart (레이더) | `d3.lineRadial()` | 완료 |
+| `box-plot.tsx` | Box plot (박스) | `d3.quantile()`, `d3.extent()` | 완료 |
+| `stacked-bar-chart.tsx` | Stacked bar chart | `d3.stack()` | 완료 |
+| `treemap.tsx` | Treemap | `d3.treemap()`, `d3.hierarchy()` | 완료 |
+| `heatmap.tsx` | Heatmap | `scaleSequential`, `interpolateInferno` | 완료 |
+| `network-graph.tsx` | Network graph | `forceSimulation()`, `forceLink()` | 완료 |
+| `stream-graph.tsx` | Stream graph | `d3.stack()`, `stackOffsetWiggle` | 완료 |
