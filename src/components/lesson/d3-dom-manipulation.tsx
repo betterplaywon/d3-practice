@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const Lesson02 = () => {
+const D3DomManipulation = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,4 +51,4 @@ const Lesson02 = () => {
   return <div ref={canvasRef}></div>;
 };
 
-export default Lesson02;
+export default D3DomManipulation;

@@ -7,7 +7,7 @@ interface Planet {
   fill: string;
 }
 
-const Lesson03 = () => {
+const ScatterPlot = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const Lesson03 = () => {
   return <div ref={canvasRef}></div>;
 };
 
-export default Lesson03;
+export default ScatterPlot;

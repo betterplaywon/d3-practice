@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const Lesson04 = () => {
+const BarChart = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,4 +64,4 @@ const Lesson04 = () => {
   return <div ref={canvasRef}></div>;
 };
 
-export default Lesson04;
+export default BarChart;

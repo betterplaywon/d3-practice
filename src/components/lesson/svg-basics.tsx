@@ -1,4 +1,4 @@
-const Lesson01 = () => {
+const SvgBasics = () => {
   return (
     <div>
       <svg width="600" height="600">
@@ -24,4 +24,4 @@ const Lesson01 = () => {
   );
 };
 
-export default Lesson01;
+export default SvgBasics;

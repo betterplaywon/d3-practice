@@ -10,7 +10,7 @@ const INNER_RADIUS = 80;
 
 type ArcDatum = d3.PieArcDatum<DonutSlice>;
 
-const Lesson05 = () => {
+const DonutChart = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, isError } = useDonutChart();
 
@@ -110,4 +110,4 @@ const Lesson05 = () => {
   return <div ref={canvasRef} />;
 };
 
-export default Lesson05;
+export default DonutChart;

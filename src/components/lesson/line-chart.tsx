@@ -11,7 +11,7 @@ interface ParsedPoint extends LinePoint {
   parsedDate: Date;
 }
 
-const Lesson07 = () => {
+const LineChart = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, isError } = useLineChart();
 
@@ -168,4 +168,4 @@ const Lesson07 = () => {
   return <div ref={canvasRef} />;
 };
 
-export default Lesson07;
+export default LineChart;

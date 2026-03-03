@@ -9,7 +9,7 @@ const RADIUS = 180;
 
 type ArcDatum = d3.PieArcDatum<PieSlice>;
 
-const Lesson06 = () => {
+const PieChart = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, isError } = usePieChart();
 
@@ -108,4 +108,4 @@ const Lesson06 = () => {
   return <div ref={canvasRef} />;
 };
 
-export default Lesson06;
+export default PieChart;
